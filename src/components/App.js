@@ -11,7 +11,23 @@ class App extends Component {
     super();
     this.state = {
       myName: "Sky",
+      myAppointments: [],
     };
+  }
+
+  // Use method componentDidMount to collect data.json info.
+  componentDidMount() {
+    fetch("./data.json")
+      .then((response) => response.json())
+      .then((result) => {
+        // using JS map function here
+        const apts = result.map((item) => {
+          return item;
+        });
+        this.setState({
+          myAppointments: apts,
+        });
+      });
   }
 
   render() {
@@ -24,7 +40,7 @@ class App extends Component {
                 {/* <div>Add Appointments</div> 
                     <div>Search Appointments</div>
                     <div>List Appointments</div> */}
-                {this.state.myName}
+                {/* {this.state.myName} */}
                 <AddAppointments />
                 <SearchAppointments />
                 <ListAppointments />
