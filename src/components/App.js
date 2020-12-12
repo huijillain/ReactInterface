@@ -10,8 +10,8 @@ class App extends Component {
     // Super allows us to get informationl
     super();
     this.state = {
-      myName: "Sky",
       myAppointments: [],
+      lastIndex: 0,
     };
   }
 
@@ -22,6 +22,10 @@ class App extends Component {
       .then((result) => {
         // using JS map function here
         const apts = result.map((item) => {
+          // aptId was added later on, and add lastIndex above in line 14
+          item.aptId = this.state.lastIndex;
+          this.setState({ lastIndex: this.state.lastIndex + 1 });
+
           return item;
         });
         this.setState({
@@ -37,10 +41,6 @@ class App extends Component {
           <div className="row">
             <div className="col-md-12 bg-white">
               <div className="container">
-                {/* <div>Add Appointments</div> 
-                    <div>Search Appointments</div>
-                    <div>List Appointments</div> */}
-                {/* {this.state.myName} */}
                 <AddAppointments />
                 <SearchAppointments />
                 <ListAppointments appointments={this.state.myAppointments} />
