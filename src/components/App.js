@@ -31,13 +31,6 @@ class App extends Component {
   }
 
   render() {
-    const listItems = this.state.myAppointments.map((item) => (
-      <div>
-        <div>{item.petName}</div>
-        <div>{item.ownerName}</div>
-      </div>
-    ));
-
     return (
       <main className="page bg-white" id="petratings">
         <div className="container">
@@ -48,10 +41,9 @@ class App extends Component {
                     <div>Search Appointments</div>
                     <div>List Appointments</div> */}
                 {/* {this.state.myName} */}
-                {listItems}
                 <AddAppointments />
                 <SearchAppointments />
-                <ListAppointments />
+                <ListAppointments appointments={this.state.myAppointments} />
               </div>
             </div>
           </div>
